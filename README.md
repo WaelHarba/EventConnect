@@ -72,7 +72,7 @@ CREATE TABLE events(
 
 3. [Resend](https://resend.com/) setup:
 
-- Create an application on Resend.
+- Create an API key on Resend for the application.
 - Setup the domain on Resend in the application you created to send emails using your domain.
 - Update your `.env` according to `.env.example`.
 
