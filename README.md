@@ -34,3 +34,48 @@ The **Builder pattern** is employed for handling different event types in EventC
 - [Neon PostgreSQL](https://neon.tech/): Cloud-based database for secure data storage.
 - [Clerk](https://clerk.com/): For user authentication and secure account management.
 - **[ShadCN UI](https://ui.shadcn.dev/)**: A set of high-quality UI components built for React and Tailwind CSS, used to create modern and accessible interfaces.
+
+## How to run
+
+1. [Clerk](https://clerk.com/) setup:
+
+- Create an application on Clerk.
+- Setup the application based on your preference of auth.
+- Update your `.env` according to `.env.example`.
+
+2. [Neon PostgreSQL](https://neon.tech/) setup:
+
+- Create a database on Neon.
+- Use the following queries to create the **friendships** and **events** tables:
+
+```sql
+CREATE TABLE friendships(
+    friendship_id SERIAL PRIMARY KEY,
+    username VARCHAR(40) NOT NULL,
+    profile_pic VARCHAR(300) NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    friend_username VARCHAR(40) NOT NULL,
+    friend_email VARCHAR(200) NOT NULL,
+    friend_pic VARCHAR(300) NOT NULL
+    );
+
+CREATE TABLE events(
+    event_id SERIAL PRIMARY KEY,
+    creator_username VARCHAR(40) NOT NULL,
+    event_details JSONB NOT NULL,
+    accepted_invitees TEXT[],
+    pending_invitees TEXT[]
+    );
+```
+
+- Update your `.env` file with the database URL according to `.env.example`.
+
+3. [Resend](https://resend.com/) setup:
+
+- Create an application on Resend.
+- Setup the domain on Resend in the application you created to send emails using your domain.
+- Update your `.env` according to `.env.example`.
+
+4. Run `npm run dev`
+
+5. Go to `localhost:3000` in your browser. The port might not be 3000 if that's already being used on your device. Check console for correct port after finishing step 4.
